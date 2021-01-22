@@ -1,3 +1,3 @@
 include(AddTest)
 
-add_test("containers/tuple.cpp" tuple)
+add_test("containers/Tuple.cpp" tuple)
