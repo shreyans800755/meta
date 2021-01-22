@@ -1,0 +1,7 @@
+function(add_test SOURCE TARGET_NAME)
+    set(TARGET "${TARGET_NAME}_test")
+    message("Source: " ${SOURCE})
+    message("Target: " ${TARGET})
+    add_executable(${TARGET} ${SOURCE})
+    target_link_libraries(${TARGET} meta)
+endfunction()
