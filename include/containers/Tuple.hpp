@@ -1,3 +1,5 @@
+#include <core/make.hpp>
+
 #include <cstddef>
 #include <utility>
 
@@ -61,6 +63,21 @@ constexpr auto& get(const Tuple<Types...>& tuple)
     static_assert(INDEX >= 0 && INDEX < tuple.SIZE,
                   "Index must be between [0, SIZE)");
     return detail::getImpl<INDEX>(tuple);
+}
+
+template <typename... Types>
+struct makeImpl<TupleTag, Types...>
+{
+    static constexpr auto dispatch(Types&&... values)
+    {
+        return Tuple<Types...>(std::forward<Types>(values)...);
+    }
+};
+
+template <typename... Types>
+constexpr auto makeTuple(Types&&... values)
+{
+    return make<TupleTag>(std::forward<Types>(values)...);
 }
 
 
